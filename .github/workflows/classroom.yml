@@ -27,7 +27,7 @@ jobs:
         command: 'ls .github/workflows/python-package.yml'
         input: ''
         expected-output: 'python-package.yml'
-        comparison-method: 'included'
+        comparison-method: 'contains'
         max-score: 1
 
     - name: Check python-package.yml content
@@ -38,7 +38,7 @@ jobs:
         command: 'grep "pytest" .github/workflows/python-package.yml'
         input: ''
         expected-output: 'pytest'
-        comparison-method: 'included'
+        comparison-method: 'contains'
         max-score: 1
 
     - name: Check for python-coverage.yml
@@ -49,7 +49,7 @@ jobs:
         command: 'ls .github/workflows/python-coverage.yml'
         input: ''
         expected-output: 'python-coverage.yml'
-        comparison-method: 'included'
+        comparison-method: 'contains'
         max-score: 1
 
     - name: Check python-coverage.yml content
@@ -60,7 +60,7 @@ jobs:
         command: 'grep "pytest --cov=src" .github/workflows/python-coverage.yml'
         input: ''
         expected-output: 'pytest --cov=src'
-        comparison-method: 'included'
+        comparison-method: 'contains'
         max-score: 1
 
     - name: Check for uncommented test
