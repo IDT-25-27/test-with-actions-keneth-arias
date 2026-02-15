@@ -71,6 +71,17 @@ jobs:
         command: 'if grep -q "# def test_get_nth_fibonacci_ten" tests/calculations_test.py; then exit 1; else exit 0; fi'
         max-score: 1
 
+    - name: Check for fixed fibonacci test
+      id: check_fibonacci_fixed
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: 'Check for fixed fibonacci test'
+        command: 'grep "assert result == 55" tests/calculations_test.py'
+        input: ''
+        expected-output: 'assert result == 55'
+        comparison-method: 'contains'
+        max-score: 1
+
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
@@ -79,5 +90,6 @@ jobs:
         CHECK_COVERAGE_FILE_RESULTS: "${{steps.check_coverage_file.outputs.result}}"
         CHECK_COVERAGE_CONTENT_RESULTS: "${{steps.check_coverage_content.outputs.result}}"
         CHECK_TEST_UNCOMMENTED_RESULTS: "${{steps.check_test_uncommented.outputs.result}}"
-      with:
-        runners: 'check_package_file,check_package_content,check_coverage_file,check_coverage_content,check_test_uncommented'
+        CHECK_FIBONACCI_FIXED_RESULTS: "${{steps.check_fibonacci_fixed.outputs.result}}"
+        with:
+        runners: 'check_package_file,check_package_content,check_coverage_file,check_coverage_content,check_test_uncommented,check_fibonacci_fixed'
